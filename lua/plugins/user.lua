@@ -9,90 +9,84 @@ return {
 
   -- == Examples of Adding Plugins ==
 
-
   "max397574/better-escape.nvim",
   {
-  cond = not vim.g.vscode,
-  opts = function(_, opts)
-    local esc_fn = function()
-      if vim.bo.filetype == "OverseerForm" then
-        return vim.api.nvim_win_get_cursor(0)[2] > 1 and "<Esc>lx" or "<Esc>x"
+    cond = not vim.g.vscode,
+    opts = function(_, opts)
+      local esc_fn = function()
+        if vim.bo.filetype == "OverseerForm" then
+          return vim.api.nvim_win_get_cursor(0)[2] > 1 and "<Esc>lx" or "<Esc>x"
+        end
+        return vim.api.nvim_win_get_cursor(0)[2] > 1 and "<Esc>l" or "<Esc>"
       end
-      return vim.api.nvim_win_get_cursor(0)[2] > 1 and "<Esc>l" or "<Esc>"
-    end
-    opts.mappings = {
-      i = {
-        j = {
-          k = esc_fn,
+      opts.mappings = {
+        i = {
+          j = {
+            k = esc_fn,
+          },
+          k = {
+            j = esc_fn,
+          },
         },
-        k = {
-          j = esc_fn,
+        c = {
+          j = {
+            k = esc_fn,
+          },
+          k = {
+            j = esc_fn,
+          },
         },
-      },
-      c = {
-        j = {
-          k = esc_fn,
+        t = {
+          j = {
+            k = "<C-\\><C-n>",
+          },
+          k = {
+            j = esc_fn,
+          },
         },
-        k = {
-          j = esc_fn,
-        },
-      },
-      t = {
-        j = {
-          k = "<C-\\><C-n>",
-        },
-        k = {
-          j = esc_fn,
-        },
-      },
-      v = {},
-      x = {},
-      s = {},
-    }
-  end
-},
+        v = {},
+        x = {},
+        s = {},
+      }
+    end,
+  },
 
   "HakonHarnes/img-clip.nvim",
   {
-  opts = function(_, opts)
-    opts.default = {
-      -- file and directory options
-      dir_path = "assets",
-      -- dir_path = function()
-      --   return vim.fn.expand("%:t:r")
-      -- end,
-      extension = "png",
-      -- file_name = "%Y-%m-%d-%H-%M-%S",
-      file_name = function()
-        local filename = vim.fn.expand("%:t:r") -- file_name with no extension
-        local date = os.date("%Y-%m-%d_%H-%M-%S") -- datetime
-        return filename .. "_" .. date -- format: filename_YYYY-MM-DD_HH-MM-SS
-      end,
-      notify = true,
-      use_absolute_path = false,
-      relative_to_current_file = true,
-      -- prompt options
-      prompt_for_file_name = false,
-    }
-  end
+    opts = function(_, opts)
+      opts.default = {
+        -- file and directory options
+        dir_path = "assets",
+        -- dir_path = function()
+        --   return vim.fn.expand("%:t:r")
+        -- end,
+        extension = "png",
+        -- file_name = "%Y-%m-%d-%H-%M-%S",
+        file_name = function()
+          local filename = vim.fn.expand "%:t:r" -- file_name with no extension
+          local date = os.date "%Y-%m-%d_%H-%M-%S" -- datetime
+          return filename .. "_" .. date -- format: filename_YYYY-MM-DD_HH-MM-SS
+        end,
+        notify = true,
+        use_absolute_path = false,
+        relative_to_current_file = true,
+        -- prompt options
+        prompt_for_file_name = false,
+      }
+    end,
   },
 
-
-    "L3MON4D3/LuaSnip",
+  "L3MON4D3/LuaSnip",
   {
     config = function(plugin, opts)
       require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
       -- add more custom luasnip configuration such as filetype extend or custom snippets
       local luasnip = require "luasnip"
       vim.keymap.set({ "i", "s" }, "<C-k>", function()
-        if luasnip.choice_active() then
-          luasnip.change_choice(1)
-        end
+        if luasnip.choice_active() then luasnip.change_choice(1) end
       end)
       vim.keymap.set({ "i", "s" }, "<C-j>", function()
-        if luasnip.choice_active() then
-       luasnip.change_choice(-1)
-       end
+        if luasnip.choice_active() then luasnip.change_choice(-1) end
       end)
       luasnip.filetype_extend("javascript", { "javascriptreact" })
       -- load snippets paths
@@ -102,64 +96,62 @@ return {
     end,
   },
 
+  -- "nvim-neo-tree/neo-tree.nvim",
+  -- {
+  --   opts = {
+  --     --window = 40,
+  --     -- default_component_configs = {
+  --     --   container = {
+  --     --     enable_character_fade = false,
+  --     --   },
+  --     --   -- file_size = {
+  --     --   --   enabled = true,
+  --     --   --   required_width = 24, -- min width of window required to show this column
+  --     --   -- },
+  --     --   -- type = {
+  --     --   --   enabled = true,
+  --     --   --   required_width = 122, -- min width of window required to show this column
+  --     --   -- },
+  --     --   -- last_modified = {
+  --     --   --   enabled = true,
+  --     --   --   required_width = 88, -- min width of window required to show this column
+  --     --   -- },
+  --     --   -- created = {
+  --     --   --   enabled = true,
+  --     --   --   required_width = 110, -- min width of window required to show this column
+  --     --   -- },
+  --     --   -- symlink_target = {
+  --     --   --   enabled = false,
+  --     --   -- },
+  --     -- },
+  --     -- window = {
+  --     --   position = "left",
+  --     --   width = 30,
+  --     --   mapping_options = {
+  --     --     noremap = true,
+  --     --     nowait = true,
+  --     --   },
+  --     -- },
+  --     -- filesystem = {
+  --     --   follow_current_file = {
+  --     --     enabled = true,
+  --     --   },
+  --     --   filtered_items = {
+  --     --     visible = true,
+  --     --     hide_dotfiles = false,
+  --     --     hide_gitignore = false,
+  --     --     hide_by_name = {
+  --     --       ".DS_Store",
+  --     --       "thumbs.db",
+  --     --       "node_modules",
+  --     --       "__pycache__",
+  --     --     },
+  --     --   },
+  --     -- },
+  --   },
+  -- },
 
-    "nvim-neo-tree/neo-tree.nvim",
-  {
-    opts = {
-      --window = 40,
-      default_component_configs = {
-        container = {
-          enable_character_fade = false,
-        },
-        -- file_size = {
-        --   enabled = true,
-        --   required_width = 24, -- min width of window required to show this column
-        -- },
-        -- type = {
-        --   enabled = true,
-        --   required_width = 122, -- min width of window required to show this column
-        -- },
-        -- last_modified = {
-        --   enabled = true,
-        --   required_width = 88, -- min width of window required to show this column
-        -- },
-        -- created = {
-        --   enabled = true,
-        --   required_width = 110, -- min width of window required to show this column
-        -- },
-        -- symlink_target = {
-        --   enabled = false,
-        -- },
-      },
-      window = {
-          position = "left",
-          width = 30,
-          mapping_options = {
-            noremap = true,
-            nowait = true,
-          },
-      },
-      filesystem = {
-        follow_current_file = {
-          enabled = true,
-        },
-        filtered_items = {
-          visible = true,
-          hide_dotfiles = false,
-          hide_gitignore = false,
-          hide_by_name = {
-            ".DS_Store",
-            "thumbs.db",
-            "node_modules",
-            "__pycache__",
-          },
-        },
-      },
-    },
-  },
-
-
-    "windwp/nvim-autopairs",
+  "windwp/nvim-autopairs",
   {
     config = function(plugin, opts)
       require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts) -- include the default astronvim config that calls the setup call
@@ -191,46 +183,44 @@ return {
 
   "kylechui/nvim-surround",
   {
-  version = "*", -- Use for stability; omit to use `main` branch for the latest features
-  event = "VeryLazy",
-  opts = {
-    aliases = {
-      ["b"] = { ")", "}", "]", ">" },
-    },
-  },
-  "andweeb/presence.nvim",
-  {
-    "ray-x/lsp_signature.nvim",
-    event = "BufRead",
-    config = function() require("lsp_signature").setup() end,
-  },
-  },
-
-
- "goolord/alpha-nvim",
-  {
-    plugins = {
-      telescope = {
-        pickers = {
-          find_files = {
-            hidden = true,
-          },
-        },
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    opts = {
+      aliases = {
+        ["b"] = { ")", "}", "]", ">" },
       },
     },
-  },
-
-
-  "folke/which-key.nvim",
-  {
-  opts = {
-    preset = "modern",
-    delay = 0,
-    icons = {
-      separator = "➜",
+    "andweeb/presence.nvim",
+    {
+      "ray-x/lsp_signature.nvim",
+      event = "BufRead",
+      config = function() require("lsp_signature").setup() end,
     },
   },
-  },
+
+  -- "goolord/alpha-nvim",
+  -- {
+  --   plugins = {
+  --     telescope = {
+  --       pickers = {
+  --         find_files = {
+  --           hidden = true,
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
+
+  -- "folke/which-key.nvim",
+  -- {
+  --   opts = {
+  --     preset = "modern",
+  --     -- delay = 0,
+  --     icons = {
+  --       separator = "➜",
+  --     },
+  --   },
+  -- },
   -- == Examples of Overriding Plugins ==
 
   -- customize dashboard options
