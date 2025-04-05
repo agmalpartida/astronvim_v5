@@ -36,6 +36,6 @@ nvim
 ## Shortcuts
 
 - Symbols: 
-  - <Leader>ls : show up fzf to search symbol.
-  - <Leader>lS : show up right sidebar with all symbols.
+  - <Leader>ls : Launch FZF to search for symbols.
+  - <Leader>lS : Toggle right sidebar with all symbols. 
 
