@@ -32,3 +32,10 @@ git clone https://github.com/<your_user>/<your_repository> ~/.config/nvim
 ```shell
 nvim
 ```
+
+## Shortcuts
+
+- Symbols: 
+  - <Leader>ls : show up fzf to search symbol.
+  - <Leader>lS : show up right sidebar with all symbols.
+
