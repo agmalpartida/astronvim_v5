@@ -12,8 +12,8 @@ return {
   opts = {
     -- change colorscheme
     -- colorscheme = "astrodark",
-    -- colorscheme = "catppuccin",
-    colorscheme = "sonokai",
+    colorscheme = "catppuccin",
+    -- colorscheme = "sonokai",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
@@ -38,10 +38,10 @@ return {
       LSPLoading10 = "⠏",
     },
   },
-  {
-    "sainnhe/sonokai",
-    init = function() -- init function runs before the plugin is loaded
-      vim.g.sonokai_style = "shusia"
-    end,
-  },
+  -- {
+  --   "sainnhe/sonokai",
+  --   init = function() -- init function runs before the plugin is loaded
+  --     vim.g.sonokai_style = "shusia"
+  --   end,
+  -- },
 }
