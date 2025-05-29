@@ -219,8 +219,6 @@ return {
     },
   },
 
-  
- { "akinsho/bufferline.nvim", enabled = false },
 
   -- customize dashboard options
   {
