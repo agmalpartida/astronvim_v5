@@ -219,6 +219,9 @@ return {
     },
   },
 
+  
+ { "akinsho/bufferline.nvim", enabled = false },
+
   -- customize dashboard options
   {
     "folke/snacks.nvim",
