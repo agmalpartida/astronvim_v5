@@ -13,7 +13,7 @@ return {
     -- change colorscheme
     -- colorscheme = "astrodark",
     -- colorscheme = "catppuccin",
-    colorscheme = "gruvbox-material",
+    colorscheme = "gruvbox-baby",
     -- colorscheme = "sonokai",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
@@ -38,9 +38,6 @@ return {
       LSPLoading9 = "⠇",
       LSPLoading10 = "⠏",
     },
-  },
-  {
-    " sainnhe/gruvbox-material",
   },
   -- {
   --   "sainnhe/sonokai",
