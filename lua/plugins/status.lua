@@ -31,27 +31,6 @@ vim.cmd [[
   "highlight StatusLineOutside       guibg=#3a3a3a guifg=#999999
   "highlight StatusLineTransition1   guibg=#303030 guifg=#1c1c1c
   "highlight StatusLineTransition2   guibg=#3a3a3a guifg=#1c1c1c
-
-  "function! FindHeader()
-  "  " We need to find the header, it will be the first line that has:
-  "  " | columnName |
-  "  " in it.
-  "  " We will only look at the first 100 lines.
-  "  let b:table_header = 1
-  "  for i in range(1, 100)
-  "    let line = getline(i)
-  "    let header = matchstr(line, '|\s.*\s|')
-  "    if !empty(header)
-  "      let b:table_header = i
-  "      return
-  "    endif
-  "  endfor
-  "endfunction
-  "
-  "augroup dbout
-  "  autocmd!
-  "  autocmd BufReadPost *.dbout call FindHeader()
-  "augroup END
 ]]
 
 _G.status = M
