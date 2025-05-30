@@ -23,6 +23,16 @@ return {
       astrodark = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
       },
+      winbar = {
+          WinBar = { guifg="#BBBBBB" },
+          WinBarHeader = {     guifg="#BBBBBB" },
+          WinBarNC     = {     guifg="#888888" },
+          WinBarLocation  = {  guifg="#888888" },
+          WinBarModified  = {  guifg="#d7d787" },
+          WinBarGitDirty = {   guifg="#d7afd7" },
+          WinBarIndicator = {  guifg="#5fafd7" },
+          WinBarInactive  = {  guibg="#3a3a3a" },
+      },
     },
     -- Icons can be configured throughout the interface
     icons = {
