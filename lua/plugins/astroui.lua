@@ -38,6 +38,31 @@ return {
       LSPLoading9 = "⠇",
       LSPLoading10 = "⠏",
     },
+     -- Configure enabling/disabling of winbar
+    winbar = {
+      enabled = { -- whitelist buffer patterns
+        filetype = { "gitsigns.blame" },
+      },
+      disabled = { -- blacklist buffer patterns
+        buftype = { "nofile", "terminal" },
+      },
+    },
+  },
+   -- Configure theming of Lazygit, set to `false` to disable
+  lazygit = {
+    theme_path = vim.fs.normalize(vim.fn.stdpath "cache" .. "/lazygit-theme.yml"),
+    theme = {
+      [241] = { fg = "Special" },
+      activeBorderColor = { fg = "MatchParen", bold = true },
+      cherryPickedCommitBgColor = { fg = "Identifier" },
+      cherryPickedCommitFgColor = { fg = "Function" },
+      defaultFgColor = { fg = "Normal" },
+      inactiveBorderColor = { fg = "FloatBorder" },
+      optionsTextColor = { fg = "Function" },
+      searchingActiveBorderColor = { fg = "MatchParen", bold = true },
+      selectedLineBgColor = { bg = "Visual" },
+      unstagedChangesColor = { fg = "DiagnosticError" },
+    },
   },
   -- {
   --   "sainnhe/sonokai",
