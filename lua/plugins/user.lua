@@ -148,18 +148,18 @@ return {
     },
      keys = {
       {
-        "<leader>ob",
+        "<leader>b",
         function()
           require("neo-tree.command").execute({ source = "buffers", toggle = true })
         end,
-        desc = "Abrir vista de buffers en Neo-tree",
+        desc = "Open buffer view in Neo-tree",
       },
        {
-        "<leader>og",
+        "<leader>G",
         function()
           require("neo-tree.command").execute({ source = "git_status", toggle = true })
         end,
-        desc = "Abrir vista de Git en Neo-tree",
+        desc = "Open Git view in Neo-tree",
        },
      },
   },
