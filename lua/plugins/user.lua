@@ -146,6 +146,22 @@ return {
         },
       },
     },
+     keys = {
+      {
+        "<leader>ob",
+        function()
+          require("neo-tree.command").execute({ source = "buffers", toggle = true })
+        end,
+        desc = "Abrir vista de buffers en Neo-tree",
+      },
+       {
+        "<leader>og",
+        function()
+          require("neo-tree.command").execute({ source = "git_status", toggle = true })
+        end,
+        desc = "Abrir vista de Git en Neo-tree",
+       },
+     },
   },
 
   {
