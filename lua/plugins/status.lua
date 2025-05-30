@@ -76,25 +76,25 @@ local winbar_filetype_exclude = {
 }
 
 
-M.get_statusline = function()
-  local parts = {
-    --"%{%v:lua.status.get_mode()%}",
-    '%#StatusLineCwd#  %{fnamemodify(getcwd(), ":~")}/%*',
-    "%#StatusLineTransition2#▕%*",
-    "%#StatusLineTransition1#▏%*",
-    "%<",
-    "%#StatusLineFile#%f %*",
-    "%#StatusLineMod#%{IsBuffersModified()}%*",
-    "%=",
-    "%{%v:lua.status.get_diag_counts()%}",
-    "%{%v:lua.status.get_git_changes()%}",
-    "%#StatusLineTransition1#▕%*",
-    "%#StatusLineTransition2#▏%*",
-    "%{%v:lua.status.get_git_branch()%}",
-    '%#StatusLineOutside# %3l/%L󰮾 %3c %*',
-  }
-  return table.concat(parts)
-end
+-- M.get_statusline = function()
+--   local parts = {
+--     --"%{%v:lua.status.get_mode()%}",
+--     '%#StatusLineCwd#  %{fnamemodify(getcwd(), ":~")}/%*',
+--     "%#StatusLineTransition2#▕%*",
+--     "%#StatusLineTransition1#▏%*",
+--     "%<",
+--     "%#StatusLineFile#%f %*",
+--     "%#StatusLineMod#%{IsBuffersModified()}%*",
+--     "%=",
+--     "%{%v:lua.status.get_diag_counts()%}",
+--     "%{%v:lua.status.get_git_changes()%}",
+--     "%#StatusLineTransition1#▕%*",
+--     "%#StatusLineTransition2#▏%*",
+--     "%{%v:lua.status.get_git_branch()%}",
+--     '%#StatusLineOutside# %3l/%L󰮾 %3c %*',
+--   }
+--   return table.concat(parts)
+-- end
 
 -- mode_map copied from:
 -- https://github.com/nvim-lualine/lualine.nvim/blob/5113cdb32f9d9588a2b56de6d1df6e33b06a554a/lua/lualine/utils/mode.lua
@@ -138,15 +138,15 @@ local mode_map = {
   ['t']      = 'TERMINAL',
 }
 
-local is_current = function()
-  local winid = vim.g.actual_curwin
-  if isempty(winid) then
-    return false
-  else
-    return winid == tostring(vim.api.nvim_get_current_win())
-  end
-end
-
+-- local is_current = function()
+--   local winid = vim.g.actual_curwin
+--   if isempty(winid) then
+--     return false
+--   else
+--     return winid == tostring(vim.api.nvim_get_current_win())
+--   end
+-- end
+--
 -- M.active_indicator = function()
 --   if is_current() then
 --     return "%#WinBarIndicator#▔▔▔▔▔▔▔▔%*"
@@ -154,8 +154,8 @@ end
 --     return ""
 --   end
 -- end
--- local icon_cache = {}
-
+local icon_cache = {}
+--
 M.get_icon = function(filename, extension)
   if not filename then
     if vim.bo.modified then
@@ -382,7 +382,7 @@ end
 
 
 _G.status = M
-vim.o.winbar="%{%v:lua.status.get_winbar()%}"
-vim.o.statusline="%{%v:lua.status.get_statusline()%}"
+-- vim.o.winbar="%{%v:lua.status.get_winbar()%}"
+-- vim.o.statusline="%{%v:lua.status.get_statusline()%}"
 
 return M
