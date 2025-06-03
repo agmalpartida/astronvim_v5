@@ -21,31 +21,31 @@ return {
           command = "set filetype=groovy",
         },
       },
-      git_branch_sessions = {
-        -- auto save directory sessions on leaving
-        {
-          event = "VimLeavePre",
-          desc = "Save git branch directory sessions on close",
-          callback = vim.schedule_wrap(function()
-            if require("astrocore.buffer").is_valid_session() then
-              require("resession").save(get_session_name(), { dir = "dirsession", notify = false })
-            end
-          end),
-        },
-        -- auto restore previous previous directory session, remove if necessary
-        {
-          event = "VimEnter",
-          desc = "Restore previous directory session if neovim opened with no arguments",
-          nested = true, -- trigger other autocommands as buffers open
-          callback = function()
-            -- Only load the session if nvim was started with no args
-            if vim.fn.argc(-1) == 0 then
-              -- try to load a directory session using the current working directory
-              require("resession").load(get_session_name(), { dir = "dirsession", silence_errors = true })
-            end
-          end,
-        },
-      },
+      -- git_branch_sessions = {
+      --   -- auto save directory sessions on leaving
+      --   {
+      --     event = "VimLeavePre",
+      --     desc = "Save git branch directory sessions on close",
+      --     callback = vim.schedule_wrap(function()
+      --       if require("astrocore.buffer").is_valid_session() then
+      --         require("resession").save(get_session_name(), { dir = "dirsession", notify = false })
+      --       end
+      --     end),
+      --   },
+      --   -- auto restore previous previous directory session, remove if necessary
+      --   {
+      --     event = "VimEnter",
+      --     desc = "Restore previous directory session if neovim opened with no arguments",
+      --     nested = true, -- trigger other autocommands as buffers open
+      --     callback = function()
+      --       -- Only load the session if nvim was started with no args
+      --       if vim.fn.argc(-1) == 0 then
+      --         -- try to load a directory session using the current working directory
+      --         require("resession").load(get_session_name(), { dir = "dirsession", silence_errors = true })
+      --       end
+      --     end,
+      --   },
+      -- },
       restore_session = {
         {
           event = "VimEnter",
