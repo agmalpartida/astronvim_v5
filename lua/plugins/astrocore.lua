@@ -115,15 +115,15 @@ return {
       mappings = {
         n = {
           -- update save dirsession mapping to get the correct session name
-          ["<Leader>SS"] = {
-            function() require("resession").save(get_session_name(), { dir = "dirsession" }) end,
-            desc = "Save this dirsession",
-          },
-          -- update load dirsession mapping to get the correct session name
-          ["<Leader>S."] = {
-            function() require("resession").load(get_session_name(), { dir = "dirsession" }) end,
-            desc = "Load current dirsession",
-          },
+          -- ["<Leader>SS"] = {
+          --   function() require("resession").save(get_session_name(), { dir = "dirsession" }) end,
+          --   desc = "Save this dirsession",
+          -- },
+          -- -- update load dirsession mapping to get the correct session name
+          -- ["<Leader>S."] = {
+          --   function() require("resession").load(get_session_name(), { dir = "dirsession" }) end,
+          --   desc = "Load current dirsession",
+          -- },
         },
       },
       ignore = {
