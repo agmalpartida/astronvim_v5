@@ -125,11 +125,6 @@ return {
             desc = "Load current dirsession",
           },
         },
-        i = {
-          ["<Leader>jn"] = { "<cmd>luasnip-next-choice<cr>", desc = "Snippet next choice" },
-          },
-        },
-       
       },
       ignore = {
         dirs = {}, -- working directories to ignore sessions in
