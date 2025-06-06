@@ -125,20 +125,12 @@ return {
             desc = "Load current dirsession",
           },
         },
-      },
-      n = {
-        -- update save dirsession mapping to get the correct session name
-        ["<Leader>SS"] = {
-          function() require("resession").save(get_session_name(), { dir = "dirsession" }) end,
-          desc = "Save this dirsession",
+        i = {
+          ["<Leader>jn"] = { "<cmd>luasnip-next-choice<cr>", desc = "Snippet next choice" },
+          },
         },
-        -- update load dirsession mapping to get the correct session name
-        ["<Leader>S."] = {
-          function() require("resession").load(get_session_name(), { dir = "dirsession" }) end,
-          desc = "Load current dirsession",
-        },
+       
       },
-      -- Patterns to ignore when saving sessions
       ignore = {
         dirs = {}, -- working directories to ignore sessions in
         filetypes = { "gitcommit", "gitrebase", "node_modules" }, -- filetypes to ignore sessions
