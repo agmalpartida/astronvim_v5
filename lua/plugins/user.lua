@@ -48,7 +48,12 @@ return {
       }
     end,
   },
-
+  {
+    "zbirenbaum/copilot-cmp",
+     config = function()
+         require("copilot_cmp").setup()
+     end,
+  },
   {
     "HakonHarnes/img-clip.nvim",
     opts = function(_, opts)
