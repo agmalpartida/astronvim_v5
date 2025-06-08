@@ -1,4 +1,4 @@
-  {
+{
   "name": "my-own-snippets",
   "engines": {
     "vscode": "^1.11.0"
@@ -21,6 +21,12 @@
           "python"
         ],
         "path": "./python.json"
+      },
+      {
+        "language": [
+          "markdown"
+        ],
+        "path": "./markdown.json"
       },
       {
         "language": [
