@@ -1,3 +1,5 @@
+-- Blink.nvim is a Neovim plugin that provides an AI-powered completion engine.
+-- https://cmp.saghen.dev/
 return {
   "Saghen/blink.cmp",
   optional = true,
@@ -15,5 +17,14 @@ return {
       "fallback",
     }
     opts.keymap["<S-Tab>"] = { "snippet_backward", "fallback" }
+    opts.sources = {
+      providers = {
+        path = { score_offset = 3 },
+        lsp = { score_offset = 0 },
+        snippets = { score_offset = -1 },
+        buffer = { score_offset = -3 },
+      },
+    }
   end,
 }
+
