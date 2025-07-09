@@ -76,7 +76,7 @@
   },
   "Insert code block": {
     "prefix": "cb",
-    "body": ["```", "$0", "```"],
+    "body": ["```$0", "$1", "```"],
     "description": "Insert fenced code block"
   },
   "Insert unordered list": {
