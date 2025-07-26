@@ -59,14 +59,14 @@ return {
       LSPLoading10 = "⠏",
     },
      -- Configure enabling/disabling of winbar
-    -- winbar = {
-    --   enabled = { -- whitelist buffer patterns
-    --     filetype = { "gitsigns.blame" },
-    --   },
-    --   disabled = { -- blacklist buffer patterns
-    --     buftype = { "nofile", "terminal" },
-    --   },
-    -- },
+    winbar = {
+      enabled = { -- whitelist buffer patterns
+        filetype = { "gitsigns.blame" },
+      },
+      disabled = { -- blacklist buffer patterns
+        buftype = { "nofile", "terminal" },
+      },
+    },
   },
    -- Configure theming of Lazygit, set to `false` to disable
   lazygit = {
