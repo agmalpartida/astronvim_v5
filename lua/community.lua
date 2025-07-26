@@ -11,7 +11,7 @@ return {
   -- import/override with your plugins folder
   { import = "astrocommunity.pack.python" },
   -- "<Leader>P", paste images
-  { import = "astrocommunity.recipes.disable-tabline" }, 
+  -- { import = "astrocommunity.recipes.disable-tabline" }, 
   { import = "astrocommunity.media.img-clip-nvim" },
   { import = "astrocommunity.colorscheme.catppuccin" },
   { import = "astrocommunity.colorscheme.gruvbox-baby" },
