@@ -148,7 +148,7 @@ return {
     },
      keys = {
       {
-        "<leader>b",
+        "<leader>B",
         function()
           require("neo-tree.command").execute({ source = "buffers", toggle = true })
         end,
