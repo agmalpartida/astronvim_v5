@@ -21,6 +21,20 @@ return {
           command = "set filetype=groovy",
         },
       },
+      markdown_folding = {
+        -- El augroup puede llamarse como quieras
+        {
+          event = "FileType",
+          pattern = "markdown",
+          desc = "Folding de títulos Markdown con Tree-sitter",
+          callback = function()
+            vim.opt_local.foldmethod = "expr"
+            vim.opt_local.foldexpr = "nvim_treesitter#foldexpr()"
+            vim.opt_local.foldlevel = 99
+            vim.opt_local.foldlevelstart = 99
+          end,
+        },
+      },     
       -- git_branch_sessions = {
       --   -- auto save directory sessions on leaving
       --   {
