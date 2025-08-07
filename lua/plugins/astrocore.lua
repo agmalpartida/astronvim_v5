@@ -34,25 +34,48 @@ return {
             vim.opt_local.foldlevelstart = 99
           end,
         },
-      },     
-      close_unedited_buffers = {
-        {
-          event = "BufLeave",
-          desc = "Cerrar buffers no editados automáticamente",
-          callback = function(args)
-            local bufnr = args.buf
-            -- Solo intentamos cerrar buffers listados y no modificados
-            local bufmodified = vim.api.nvim_buf_get_option(bufnr, 'modified')
-            local buflisted = vim.api.nvim_buf_get_option(bufnr, 'buflisted')
-            -- Evitamos cerrar el último buffer o si no hay ventanas abiertas (para no colapsar nvim)
-            if not bufmodified and buflisted and vim.fn.buflisted(bufnr) == 1 and #vim.api.nvim_list_wins() > 1 then
-              vim.schedule(function()
-                pcall(function() vim.api.nvim_buf_delete(bufnr, { force = false }) end)
-              end)
-            end
-          end,
-        },
-      },     
+      },
+      -- close_unedited_buffers = {
+      --   {
+      --     event = "BufLeave",
+      --     desc = "Cerrar buffers no editados automáticamente (nunca el último)",
+      --     callback = function(args)
+      --       local bufnr = args.buf
+      --       -- Usar API moderna para obtener opciones
+      --       local bufmodified = vim.api.nvim_get_option_value('modified', { buf = bufnr })
+      --       local buflisted = vim.api.nvim_get_option_value('buflisted', { buf = bufnr })
+      --       -- Contar buffers listados visibles
+      --       local listed_buffers = vim.tbl_filter(function(b)
+      --         return vim.api.nvim_get_option_value('buflisted', { buf = b })
+      --       end, vim.api.nvim_list_bufs())
+      --       -- Cerrar solo si hay MÁS de un buffer listado y el actual cumple condiciones
+      --       if not bufmodified and buflisted and #listed_buffers > 1 then
+      --         -- Deferimos el cierre para evitar conflictos con el cambio real de buffer
+      --         vim.schedule(function()
+      --           pcall(function() vim.api.nvim_buf_delete(bufnr, { force = false }) end)
+      --         end)
+      --       end
+      --     end,
+      --   },
+      -- },
+      -- close_unedited_buffers = {
+      --   {
+      --     event = "BufLeave",
+      --     desc = "Cerrar buffers no editados automáticamente",
+      --     callback = function(args)
+      --       local bufnr = args.buf
+      --       -- Solo intentamos cerrar buffers listados y no modificados
+      --       local bufmodified = vim.api.nvim_get_option_value('modified', { buf = bufnr })
+      --       local buflisted = vim.api.nvim_get_option_value('buflisted', { buf = bufnr })
+      --       -- Evitamos cerrar el último buffer o si no hay ventanas abiertas (para no colapsar nvim)
+      --       if not bufmodified and buflisted and vim.fn.buflisted(bufnr) == 1 and #vim.api.nvim_list_wins() > 1 then
+      --         vim.schedule(function()
+      --           pcall(function() vim.api.nvim_buf_delete(bufnr, { force = false }) end)
+      --         end)
+      --       end
+      --     end,
+      --   },
+      -- },     
       -- git_branch_sessions = {
       --   -- auto save directory sessions on leaving
       --   {

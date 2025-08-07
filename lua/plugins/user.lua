@@ -13,7 +13,7 @@ return {
       config = function()
         require("buffer-closer").setup({
           min_remaining_buffers = 2,     -- cuántos buffers como mínimo quieres abiertos
-          retirement_minutes     = 3,    -- tiempo de inactividad antes de cerrar un buffer (en minutos)
+          retirement_minutes     = 1,    -- tiempo de inactividad antes de cerrar un buffer (en minutos)
           excluded = {
             filetypes = { "lazy", "NvimTree", "mason" },
             buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
