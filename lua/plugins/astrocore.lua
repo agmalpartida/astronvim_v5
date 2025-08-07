@@ -35,6 +35,24 @@ return {
           end,
         },
       },     
+      close_unedited_buffers = {
+        {
+          event = "BufLeave",
+          desc = "Cerrar buffers no editados automáticamente",
+          callback = function(args)
+            local bufnr = args.buf
+            -- Solo intentamos cerrar buffers listados y no modificados
+            local bufmodified = vim.api.nvim_buf_get_option(bufnr, 'modified')
+            local buflisted = vim.api.nvim_buf_get_option(bufnr, 'buflisted')
+            -- Evitamos cerrar el último buffer o si no hay ventanas abiertas (para no colapsar nvim)
+            if not bufmodified and buflisted and vim.fn.buflisted(bufnr) == 1 and #vim.api.nvim_list_wins() > 1 then
+              vim.schedule(function()
+                pcall(function() vim.api.nvim_buf_delete(bufnr, { force = false }) end)
+              end)
+            end
+          end,
+        },
+      },     
       -- git_branch_sessions = {
       --   -- auto save directory sessions on leaving
       --   {
@@ -196,9 +214,12 @@ return {
         ["<Leader>m"] = { function() vim.cmd "MarkdownPreview" end, desc = "Markdown Preview" },
         -- second key is the lefthand side of the map
 
-        -- navigate buffer tabs
+        -- navigate buffer tabs (navegar buffers en orden)
         ["<C-n>"] = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
         ["<C-p>"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        -- nuevo atajo para ir al buffer anterior "real"
+        ["<Leader><Tab>"] = { function() vim.cmd('b#') end, desc = "Ir al último buffer" },
+
 
         -- mappings seen under group name "Buffer"
         ["<Leader>bd"] = {
