@@ -7,26 +7,27 @@
 ---@type LazySpec
 return {
 
-{
-  "catppuccin/nvim",
-  name = "catppuccin",
-  priority = 1000,  -- Carga el tema antes que otros plugins
-  config = function()
-    require("catppuccin").setup({
-      flavour = "mocha",  -- O latte, frappe, macchiato según prefieras
-      transparent_background = true,
-      floating_border = "auto",  -- Opciones: "auto", "on", "off"
-      integrations = {
-        leap = true,        -- Activar integración con leap.nvim
-        telescope = true,   -- Integración con Telescope
-        cmp = true,         -- Integración con nvim-cmp
-        gitsigns = true,    -- Integración con gitsigns
-        -- agrega otras integraciones que necesites aquí
-      },
-    })
-    vim.cmd.colorscheme("catppuccin")
-  end,
-},
+
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,  -- Carga prioridad alta para que el tema se aplique primero
+    config = function()
+      require("catppuccin").setup({
+        flavour = "mocha",               -- O latte, frappe, macchiato, según prefieras
+        transparent_background = true,
+        floating_border = "auto",        -- Opciones válidas: "auto", "on", "off"
+        integrations = {
+          leap = true,                   -- Activa integración con leap.nvim
+          telescope = true,
+          cmp = true,
+          gitsigns = true,
+          -- puedes añadir más integraciones aquí según tus plugins
+        },
+      })
+      vim.cmd.colorscheme("catppuccin") -- Esto debe ir después del setup
+    end,
+ },
  {
   "ggandor/leap.nvim",
   event = "VeryLazy",           -- Carga Leap de forma ligera
