@@ -68,12 +68,12 @@ return {
       event = "VeryLazy",
       config = function()
         require("buffer-closer").setup({
-          min_remaining_buffers = 4,     -- cuántos buffers como mínimo quieres abiertos
-          retirement_minutes     = 2,    -- tiempo de inactividad antes de cerrar un buffer (en minutos)
+          min_remaining_buffers = 3,     -- cuántos buffers como mínimo quieres abiertos
+          retirement_minutes     = 1,    -- tiempo de inactividad antes de cerrar un buffer (en minutos)
           excluded = {
             filetypes = { "lazy", "NvimTree", "mason" },
             buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
-            filenames = {},             -- puedes añadir nombres concretos a excluir
+            filenames = {"check.md"},             -- puedes añadir nombres concretos a excluir
           },
           ignore_working_windows = true, -- no cerrar buffers que estás viendo
         })
