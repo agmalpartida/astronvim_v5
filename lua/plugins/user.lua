@@ -71,9 +71,9 @@ return {
           min_remaining_buffers = 3,     -- cuántos buffers como mínimo quieres abiertos
           retirement_minutes     = 1,    -- tiempo de inactividad antes de cerrar un buffer (en minutos)
           excluded = {
-            filetypes = { "lazy", "NvimTree", "mason" },
-            buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
-            filenames = { "*check*" },             -- puedes añadir nombres concretos a excluir
+            -- filetypes = { "lazy", "NvimTree", "mason" },
+            -- buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
+            filenames = { ".check.md" },             -- puedes añadir nombres concretos a excluir
           },
           ignore_working_windows = true, -- no cerrar buffers que estás viendo
         })
