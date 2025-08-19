@@ -73,7 +73,7 @@ return {
           excluded = {
             filetypes = { "lazy", "NvimTree", "mason" },
             buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
-            filenames = { ".check.md" },             -- puedes añadir nombres concretos a excluir
+            filenames = { "*check*" },             -- puedes añadir nombres concretos a excluir
           },
           ignore_working_windows = true, -- no cerrar buffers que estás viendo
         })
