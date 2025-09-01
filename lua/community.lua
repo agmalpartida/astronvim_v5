@@ -14,7 +14,7 @@ return {
   { import = "astrocommunity.media.img-clip-nvim" },
   -- { import = "astrocommunity.colorscheme.kanagawa-nvim" },
   -- { import = "astrocommunity.colorscheme.catppuccin" },
-  -- { import = "astrocommunity.colorscheme.gruvbox-baby" },
+  { import = "astrocommunity.colorscheme.gruvbox-baby" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
   { import = "astrocommunity.recipes.heirline-mode-text-statusline" },
   { import = "astrocommunity.completion.copilot-lua" },
