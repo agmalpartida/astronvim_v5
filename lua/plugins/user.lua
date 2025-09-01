@@ -47,9 +47,9 @@ return {
     -- overrides = function(colors) -- add/modify highlights
     --     return {}
     -- end,
-    theme = "dragon",              -- Load "wave" theme
+    theme = "wave",              -- Load "wave" theme
     background = {               -- map the value of 'background' option to a theme
-        dark = "dragon",           -- try "dragon" !
+        dark = "wave",           -- try "dragon" !
         light = "lotus"
     },
 },
@@ -99,7 +99,7 @@ return {
           excluded = {
             -- filetypes = { "lazy", "NvimTree", "mason" },
             -- buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
-            filenames = { ".check.md" },             -- puedes añadir nombres concretos a excluir
+            filenames = { ".*check.md" },             -- puedes añadir nombres concretos a excluir
           },
           ignore_working_windows = true, -- no cerrar buffers que estás viendo
         })
