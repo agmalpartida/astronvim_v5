@@ -12,6 +12,7 @@ return {
   { import = "astrocommunity.pack.python" },
   -- "<Leader>P", paste images
   { import = "astrocommunity.media.img-clip-nvim" },
+  { import = "astrocommunity.colorscheme.kanagawa-nvim" },
   -- { import = "astrocommunity.colorscheme.catppuccin" },
   -- { import = "astrocommunity.colorscheme.gruvbox-baby" },
   { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
