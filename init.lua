@@ -19,17 +19,21 @@ require "lazy_setup"
 require "polish"
 
 
-
-local buffer_closer = require("buffer-closer.modules.buffer")
-
-local excluded_opts = {
-  filenames = { ".*/%.check.md" },
-  filetypes = {},   -- asegura claves definidas aunque estén vacías
-  buftypes = {},
-}
-
-for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-  local name = vim.api.nvim_buf_get_name(bufnr)
-  local excluded = buffer_closer.is_excluded(bufnr, excluded_opts)
-  print("Buffer:", name, "Excluded:", excluded)
-end
+-- local buffer_closer = require("buffer-closer.modules.buffer")
+--
+-- local function is_custom_excluded(bufnr)
+--   local name = vim.api.nvim_buf_get_name(bufnr)
+--   -- Patrón que busca ".check.md" en cualquier parte del nombre (ajustar si quieres desde fin '$')
+--   if string.match(name, "%.check.md$") then
+--     return true
+--   end
+--   return false
+-- end
+--
+-- for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+--   local excluded_builtin = buffer_closer.is_excluded(bufnr, {
+--     filenames = {}, filetypes = {}, buftypes = {}
+--   })
+--   local excluded_custom = is_custom_excluded(bufnr)
+--   print("Buffer:", vim.api.nvim_buf_get_name(bufnr), "Builtin excluded:", excluded_builtin, "Custom excluded:", excluded_custom)
+-- end
