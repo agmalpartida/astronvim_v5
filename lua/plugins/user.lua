@@ -64,22 +64,22 @@ return {
   end,
 },
   
-    {
-      'sontungexpt/buffer-closer',
-      event = "VeryLazy",
-      config = function()
-        require("buffer-closer").setup({
-          min_remaining_buffers = 3,     -- cuántos buffers como mínimo quieres abiertos
-          retirement_minutes     = 1,    -- tiempo de inactividad antes de cerrar un buffer (en minutos)
-          excluded = {
-            -- filetypes = { "lazy", "NvimTree", "mason" },
-            -- buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
-            filenames = { ".*/%.check.md" },
-          },
-          ignore_working_windows = true, -- no cerrar buffers que estás viendo
-        })
-      end,
-    },
+    -- {
+    --   'sontungexpt/buffer-closer',
+    --   event = "VeryLazy",
+    --   config = function()
+    --     require("buffer-closer").setup({
+    --       min_remaining_buffers = 3,     -- cuántos buffers como mínimo quieres abiertos
+    --       retirement_minutes     = 1,    -- tiempo de inactividad antes de cerrar un buffer (en minutos)
+    --       excluded = {
+    --         -- filetypes = { "lazy", "NvimTree", "mason" },
+    --         -- buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
+    --         filenames = { ".*/%.check.md" },
+    --       },
+    --       ignore_working_windows = true, -- no cerrar buffers que estás viendo
+    --     })
+    --   end,
+    -- },
   
 
     {
