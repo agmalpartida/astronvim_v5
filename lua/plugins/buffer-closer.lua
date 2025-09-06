@@ -4,7 +4,7 @@ return {
   event = "VeryLazy",
   config = function()
     local settings = {
-      excluded_filetypes = { "lazy", "NvimTree", "mason" },
+      excluded_filetypes = { "lazy", "NvimTree", "mason", "neo-tree" },
       excluded_buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
       retirement_minutes = 1,
       min_remaining_buffers = 3,
