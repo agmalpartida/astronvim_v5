@@ -49,9 +49,9 @@ return {
     opts.overrides = function(colors)
       return {}
     end
-    opts.theme = "dragon"
+    opts.theme = "wave"
     opts.background = {
-      dark = "dragon",
+      dark = "wave",
       light = "lotus",
     }
   end,
