@@ -30,6 +30,34 @@ return {
  -- },
 
  {
+  "rebelot/kanagawa.nvim",
+  opts = function(_, opts)
+    opts.compile = false
+    opts.undercurl = true
+    opts.commentStyle = { italic = true }
+    opts.functionStyle = {}
+    opts.keywordStyle = { italic = true }
+    opts.statementStyle = { bold = true }
+    opts.typeStyle = {}
+    opts.transparent = false
+    opts.dimInactive = false
+    opts.terminalColors = true
+    opts.colors = {
+      palette = {},
+      theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+    }
+    opts.overrides = function(colors)
+      return {}
+    end
+    opts.theme = "dragon"
+    opts.background = {
+      dark = "dragon",
+      light = "lotus",
+    }
+  end,
+},
+
+ {
   "ggandor/leap.nvim",
   event = "VeryLazy",           -- Carga Leap de forma ligera
   config = function()
