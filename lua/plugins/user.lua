@@ -59,40 +59,31 @@ return {
   end,
 },
 
- {
+{
   "ggandor/leap.nvim",
-  event = "VeryLazy",           -- Carga Leap de forma ligera
+  event = "VeryLazy",
   config = function()
     local leap = require("leap")
+    -- No llamar a leap.set_default_mappings() para evitar conflictos
+    -- leap.set_default_mappings()
 
-    -- Mapeos básicos por defecto (s, S)
-    leap.set_default_mappings()
-
-    -- Personaliza etiquetas (labels) si quieres cambiar el esquema visual
-    leap.opts.labels = "arstneioqwfpluyjhkxvcmgz"  -- Cambia letras de salto
-
-    -- Ejemplo: Hacer que Leap funcione en cualquier ventana abierta (multipanel)
-    leap.opts.safe_labels = "arstneio"             -- Etiquetas más "seguras"
-
-    -- Opcional: saltar también en modo visual (útil para seleccionar texto rápido)
-    vim.keymap.set("x", "s", function()
-      leap.leap { target_windows = { vim.fn.win_getid() } }
-    end, { desc = "Leap visual mode" })
-
-    -- Desactiva el auto-salto si prefieres siempre elegir destino
-    -- leap.opts.autojump = false
-
-    -- Si quieres permitir equivalencia acentuada (por ejemplo, saltar a 'á' aunque escribas 'a')
+    -- Define manualmente los mapeos evitando s para no chocar
+    leap.opts.labels = "arstneioqwfpluyjhkxvcmgz"
+    leap.opts.safe_labels = "arstneio"
     leap.opts.equivalence_classes = { ["aáäâ"] = true, ["eéëê"] = true }
-
-    -- Ejemplo: salta palabras en todas las ventanas abiertas con S
-    vim.keymap.set({ "n", "x", "o" }, "S", function()
+    
+    -- Cambia la tecla para saltar a palabra en todas las ventanas de 'S' a otra, por ejemplo 'z'
+    vim.keymap.set({ "n", "x", "o" }, "z", function()
       leap.leap { target_windows = require("leap.util").get_windows() }
     end, { desc = "Leap to word in all windows" })
 
-    -- Puedes añadir más opciones según la documentación oficial
+    -- Define un nuevo mapeo para modo visual, evita 's', usa por ejemplo 'Z'
+    vim.keymap.set("x", "Z", function()
+      leap.leap { target_windows = { vim.fn.win_getid() } }
+    end, { desc = "Leap visual mode" })
   end,
 },
+
   
     -- {
     --   'sontungexpt/buffer-closer',
