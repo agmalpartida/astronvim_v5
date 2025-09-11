@@ -5,6 +5,17 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
+local function get_session_name()
+  local handle = io.popen("git rev-parse --abbrev-ref HEAD 2>/dev/null")
+  local branch = handle:read("*l")
+  handle:close()
+  if branch and branch ~= '' then
+    return branch
+  else
+    return vim.fn.getcwd()
+  end
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -76,68 +87,68 @@ return {
       --     end,
       --   },
       -- },     
-      -- git_branch_sessions = {
-      --   -- auto save directory sessions on leaving
-      --   {
-      --     event = "VimLeavePre",
-      --     desc = "Save git branch directory sessions on close",
-      --     callback = vim.schedule_wrap(function()
-      --       if require("astrocore.buffer").is_valid_session() then
-      --         require("resession").save(get_session_name(), { dir = "dirsession", notify = false })
-      --       end
-      --     end),
-      --   },
-      --   -- auto restore previous previous directory session, remove if necessary
-      --   {
-      --     event = "VimEnter",
-      --     desc = "Restore previous directory session if neovim opened with no arguments",
-      --     nested = true, -- trigger other autocommands as buffers open
-      --     callback = function()
-      --       -- Only load the session if nvim was started with no args
-      --       if vim.fn.argc(-1) == 0 then
-      --         -- try to load a directory session using the current working directory
-      --         require("resession").load(get_session_name(), { dir = "dirsession", silence_errors = true })
-      --       end
-      --     end,
-      --   },
-      -- },
-      -- restore_session = {
-      --   {
-      --     event = "VimEnter",
-      --     desc = "Restore previous directory session if neovim opened with no arguments",
-      --     nested = true, -- trigger other autocommands as buffers open
-      --     callback = function()
-      --       -- Only load the session if nvim was started with no args
-      --       if vim.fn.argc(-1) == 0 then
-      --         -- try to load a directory session using the current working directory
-      --         require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
-      --       end
-      --     end,
-      --   },
-      -- },
-      -- autohidetabline = {
-      --   -- each augroup contains a list of auto commands
-      --   {
-      --     -- create a new autocmd on the "User" event
-      --     event = "User",
-      --     -- the pattern is the name of our User autocommand events
-      --     pattern = "AstroBufsUpdated", -- triggered when vim.t.bufs is updated
-      --     -- nice description
-      --     desc = "Hide tabline when only one buffer and one tab",
-      --     -- add the autocmd to the newly created augroup
-      --     group = "autohidetabline",
-      --     callback = function()
-      --       -- if there is more than one buffer in the tab, show the tabline
-      --       -- if there are 0 or 1 buffers in the tab, only show the tabline if there is more than one vim tab
-      --       local new_showtabline = #vim.t.bufs > 1 and 2 or 1
-      --       -- check if the new value is the same as the current value
-      --       if new_showtabline ~= vim.opt.showtabline:get() then
-      --         -- if it is different, then set the new `showtabline` value
-      --         vim.opt.showtabline = new_showtabline
-      --       end
-      --     end,
-      --   },
-      --},
+      git_branch_sessions = {
+        -- auto save directory sessions on leaving
+        {
+          event = "VimLeavePre",
+          desc = "Save git branch directory sessions on close",
+          callback = vim.schedule_wrap(function()
+            if require("astrocore.buffer").is_valid_session() then
+              require("resession").save(get_session_name(), { dir = "dirsession", notify = false })
+            end
+          end),
+        },
+        -- auto restore previous previous directory session, remove if necessary
+        {
+          event = "VimEnter",
+          desc = "Restore previous directory session if neovim opened with no arguments",
+          nested = true, -- trigger other autocommands as buffers open
+          callback = function()
+            -- Only load the session if nvim was started with no args
+            if vim.fn.argc(-1) == 0 then
+              -- try to load a directory session using the current working directory
+              require("resession").load(get_session_name(), { dir = "dirsession", silence_errors = true })
+            end
+          end,
+        },
+      },
+      restore_session = {
+        {
+          event = "VimEnter",
+          desc = "Restore previous directory session if neovim opened with no arguments",
+          nested = true, -- trigger other autocommands as buffers open
+          callback = function()
+            -- Only load the session if nvim was started with no args
+            if vim.fn.argc(-1) == 0 then
+              -- try to load a directory session using the current working directory
+              require("resession").load(vim.fn.getcwd(), { dir = "dirsession", silence_errors = true })
+            end
+          end,
+        },
+      },
+      autohidetabline = {
+        -- each augroup contains a list of auto commands
+        {
+          -- create a new autocmd on the "User" event
+          event = "User",
+          -- the pattern is the name of our User autocommand events
+          pattern = "AstroBufsUpdated", -- triggered when vim.t.bufs is updated
+          -- nice description
+          desc = "Hide tabline when only one buffer and one tab",
+          -- add the autocmd to the newly created augroup
+          group = "autohidetabline",
+          callback = function()
+            -- if there is more than one buffer in the tab, show the tabline
+            -- if there are 0 or 1 buffers in the tab, only show the tabline if there is more than one vim tab
+            local new_showtabline = #vim.t.bufs > 1 and 2 or 1
+            -- check if the new value is the same as the current value
+            if new_showtabline ~= vim.opt.showtabline:get() then
+              -- if it is different, then set the new `showtabline` value
+              vim.opt.showtabline = new_showtabline
+            end
+          end,
+        },
+      },
     },
     rooter = {
       -- list of detectors in order of prevalence, elements can be:
@@ -170,15 +181,15 @@ return {
       mappings = {
         n = {
           -- update save dirsession mapping to get the correct session name
-          -- ["<Leader>SS"] = {
-          --   function() require("resession").save(get_session_name(), { dir = "dirsession" }) end,
-          --   desc = "Save this dirsession",
-          -- },
-          -- -- update load dirsession mapping to get the correct session name
-          -- ["<Leader>S."] = {
-          --   function() require("resession").load(get_session_name(), { dir = "dirsession" }) end,
-          --   desc = "Load current dirsession",
-          -- },
+          ["<Leader>SS"] = {
+            function() require("resession").save(get_session_name(), { dir = "dirsession" }) end,
+            desc = "Save this dirsession",
+          },
+          -- update load dirsession mapping to get the correct session name
+          ["<Leader>S."] = {
+            function() require("resession").load(get_session_name(), { dir = "dirsession" }) end,
+            desc = "Load current dirsession",
+          },
         },
       },
       ignore = {
