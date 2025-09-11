@@ -126,30 +126,30 @@ return {
           end,
         },
       },
-      autohidetabline = {
-        -- each augroup contains a list of auto commands
-        {
-          -- create a new autocmd on the "User" event
-          event = "User",
-          -- the pattern is the name of our User autocommand events
-          pattern = "AstroBufsUpdated", -- triggered when vim.t.bufs is updated
-          -- nice description
-          desc = "Hide tabline when only one buffer and one tab",
-          -- add the autocmd to the newly created augroup
-          group = "autohidetabline",
-          callback = function()
-            -- if there is more than one buffer in the tab, show the tabline
-            -- if there are 0 or 1 buffers in the tab, only show the tabline if there is more than one vim tab
-            local new_showtabline = #vim.t.bufs > 1 and 2 or 1
-            -- check if the new value is the same as the current value
-            if new_showtabline ~= vim.opt.showtabline:get() then
-              -- if it is different, then set the new `showtabline` value
-              vim.opt.showtabline = new_showtabline
-            end
-          end,
-        },
-      },
-    },
+    --   autohidetabline = {
+    --     -- each augroup contains a list of auto commands
+    --     {
+    --       -- create a new autocmd on the "User" event
+    --       event = "User",
+    --       -- the pattern is the name of our User autocommand events
+    --       pattern = "AstroBufsUpdated", -- triggered when vim.t.bufs is updated
+    --       -- nice description
+    --       desc = "Hide tabline when only one buffer and one tab",
+    --       -- add the autocmd to the newly created augroup
+    --       group = "autohidetabline",
+    --       callback = function()
+    --         -- if there is more than one buffer in the tab, show the tabline
+    --         -- if there are 0 or 1 buffers in the tab, only show the tabline if there is more than one vim tab
+    --         local new_showtabline = #vim.t.bufs > 1 and 2 or 1
+    --         -- check if the new value is the same as the current value
+    --         if new_showtabline ~= vim.opt.showtabline:get() then
+    --           -- if it is different, then set the new `showtabline` value
+    --           vim.opt.showtabline = new_showtabline
+    --         end
+    --       end,
+    --     },
+    --   },
+    -- },
     rooter = {
       -- list of detectors in order of prevalence, elements can be:
       --   "lsp" : lsp detection
