@@ -1,4 +1,3 @@
-
 return {
   "sontungexpt/buffer-closer",
   event = "VeryLazy",
@@ -11,8 +10,8 @@ return {
     }
 
     local function is_excluded(bufnr)
-      local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")
-      local buftype = vim.api.nvim_buf_get_option(bufnr, "buftype")
+      local filetype = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
+      local buftype = vim.api.nvim_get_option_value("buftype", { buf = bufnr })
       local name = vim.api.nvim_buf_get_name(bufnr)
       for _, ft in ipairs(settings.excluded_filetypes) do
         if filetype == ft then return true end
@@ -30,6 +29,17 @@ return {
       local bufs = vim.api.nvim_list_bufs()
       local current_time = os.time()
       local to_close = {}
+
+      -- Contar sólo buffers no excluidos y con nombre válido
+      local non_excluded_count = 0
+      for _, bufnr in ipairs(bufs) do
+        local name = vim.api.nvim_buf_get_name(bufnr)
+        if name ~= "" and not is_excluded(bufnr) then
+          non_excluded_count = non_excluded_count + 1
+        end
+      end
+
+      -- Buscar buffers candidatos a cerrar
       for _, bufnr in ipairs(bufs) do
         local name = vim.api.nvim_buf_get_name(bufnr)
         if name ~= "" and not is_excluded(bufnr) then
@@ -42,11 +52,12 @@ return {
           end
         end
       end
-      local open_count = #bufs
+
+      -- Solo cerrar si quedan más de min_remaining_buffers NO EXCLUIDOS
       for _, bufnr in ipairs(to_close) do
-        if open_count > settings.min_remaining_buffers then
+        if non_excluded_count > settings.min_remaining_buffers then
           vim.api.nvim_buf_delete(bufnr, { force = true })
-          open_count = open_count - 1
+          non_excluded_count = non_excluded_count - 1
         end
       end
     end
