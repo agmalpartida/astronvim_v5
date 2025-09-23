@@ -29,10 +29,10 @@ return {
  --    end,
  -- },
 
-{
+  {
   "akinsho/toggleterm.nvim",
   opts = function(_, opts)
-    -- Configuración básica del plugin toggleterm
+    -- Configuración básica toggleterm
     opts.size = 20
     opts.open_mapping = [[<c-\>]]
     opts.direction = "float"
@@ -43,12 +43,14 @@ return {
     opts.insert_mappings = true
     opts.persistent_size = true
 
-    -- Mapeo para abrir toggleterm flotante en directorio del archivo actual
+    -- Mapeo para abrir toggleterm float en directorio actual con nueva terminal cada vez
     vim.keymap.set("n", "<leader>tf", function()
       local Terminal = require("toggleterm.terminal").Terminal
       local float_term = Terminal:new({
         direction = "float",
         dir = vim.fn.expand("%:p:h"),
+        close_on_exit = true,
+        count = math.random(1000, 9999), -- fuerza crear nueva terminal
       })
       float_term:toggle()
     end, { noremap = true, silent = true, desc = "Abrir ToggleTerm float en directorio actual" })
