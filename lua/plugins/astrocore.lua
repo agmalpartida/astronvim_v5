@@ -32,15 +32,6 @@ return {
           command = "set filetype=groovy",
         },
       },
-      change_directory = {
-        {
-          event = "BufEnter",
-          desc = "Auto change directory to file's dir",
-          callback = function()
-            vim.cmd("silent! lcd %:p:h")
-          end,
-        },
-      },
       markdown_folding = {
         -- El augroup puede llamarse como quieras
         {
