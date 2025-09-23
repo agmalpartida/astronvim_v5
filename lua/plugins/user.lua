@@ -29,6 +29,33 @@ return {
  --    end,
  -- },
 
+{
+  "akinsho/toggleterm.nvim",
+  opts = function(_, opts)
+    -- Configuración básica del plugin toggleterm
+    opts.size = 20
+    opts.open_mapping = [[<c-\>]]
+    opts.direction = "float"
+    opts.close_on_exit = true
+    opts.shade_terminals = true
+    opts.shading_factor = 2
+    opts.start_in_insert = true
+    opts.insert_mappings = true
+    opts.persistent_size = true
+
+    -- Mapeo para abrir toggleterm flotante en directorio del archivo actual
+    vim.keymap.set("n", "<leader>tf", function()
+      local Terminal = require("toggleterm.terminal").Terminal
+      local float_term = Terminal:new({
+        direction = "float",
+        dir = vim.fn.expand("%:p:h"),
+      })
+      float_term:toggle()
+    end, { noremap = true, silent = true, desc = "Abrir ToggleTerm float en directorio actual" })
+  end,
+},
+
+  
  {
   "rebelot/kanagawa.nvim",
   opts = function(_, opts)
@@ -57,7 +84,7 @@ return {
       light = "lotus",
     }
   end,
-},
+  },
 
 {
   "ggandor/leap.nvim",
