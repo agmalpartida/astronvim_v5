@@ -14,7 +14,8 @@ return {
     -- colorscheme = "astrodark",
     -- colorscheme = "catppuccin",
     -- colorscheme = "gruvbox-baby",
-    colorscheme = "kanagawa",
+    --colorscheme = "kanagawa",
+    colorscheme = "everforest",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
       init = { -- this table overrides highlights in all themes
