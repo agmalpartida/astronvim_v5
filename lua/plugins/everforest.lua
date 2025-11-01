@@ -3,7 +3,7 @@ return {
   lazy = false, -- o true según prefieras
   config = function()
     require("everforest").setup({
-      background = "medium", -- opciones: soft, medium, hard
+      background = "hard", -- opciones: soft, medium, hard
       transparent_background_level = 0,
       italics = false,
       disable_italic_comments = false,
