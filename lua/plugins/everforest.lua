@@ -1,5 +1,5 @@
 return {
-  "sainnhe/everforest",
+  "neanias/everforest-nvim",
   lazy = false, -- o true según prefieras
   config = function()
     require("everforest").setup({
