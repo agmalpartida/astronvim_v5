@@ -18,8 +18,8 @@ return {
     -- provider = 'claude',
     provider = 'openai',
     providers = {
-      claude = {
-      -- openai = {
+      -- claude = {
+      openai = {
         -- endpoint = '<https://api.anthropic.com>',
         -- model = "claude-sonnet-4-20250514",
         -- api_key_name = 'CLAUDE_API_KEY',
