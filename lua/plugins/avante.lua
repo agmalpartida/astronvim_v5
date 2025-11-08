@@ -16,6 +16,8 @@ return {
     -- add any opts here
     -- for example
     -- provider = 'claude',
+    -- this file can contain specific instructions for your project
+    instructions_file = "avante.md",
     provider = 'openai',
     providers = {
       -- claude = {
@@ -23,12 +25,12 @@ return {
         -- endpoint = '<https://api.anthropic.com>',
         -- model = "claude-sonnet-4-20250514",
         -- api_key_name = 'CLAUDE_API_KEY',
-        model = 'o3-mini',
+        model = 'gpt-4-turbo',
         api_key_name = 'OPENAI_API_KEY',
         timeout = 30000, -- Timeout in milliseconds
         extra_request_body = {
           temperature = 0.75,
-          max_tokens = 20480,
+          max_tokens = 4096,
         },
       },
     },
@@ -71,21 +73,21 @@ return {
       ft = { 'markdown', 'Avante' },
     },
   },
-  config = function()
-    require('avante').setup {
-      -- system_prompt as function ensures LLM always has latest MCP server state
-      -- This is evaluated for every message, even in existing chats
-      system_prompt = function()
-        local hub = require('mcphub').get_hub_instance()
-        return hub and hub:get_active_servers_prompt() or ''
-      end,
-      -- Using function prevents requiring mcphub before it's loaded
-      custom_tools = function()
-        return {
-          require('mcphub.extensions.avante').mcp_tool(),
-        }
-      end,
-    }
-  end,
+  -- config = function()
+  --   require('avante').setup {
+  --     -- system_prompt as function ensures LLM always has latest MCP server state
+  --     -- This is evaluated for every message, even in existing chats
+  --     system_prompt = function()
+  --       local hub = require('mcphub').get_hub_instance()
+  --       return hub and hub:get_active_servers_prompt() or ''
+  --     end,
+  --     -- Using function prevents requiring mcphub before it's loaded
+  --     custom_tools = function()
+  --       return {
+  --         require('mcphub.extensions.avante').mcp_tool(),
+  --       }
+  --     end,
+  --   }
+  -- end,
 }
 
