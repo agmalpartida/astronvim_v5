@@ -5,7 +5,7 @@ return {
     local settings = {
       excluded_filetypes = { "lazy", "NvimTree", "mason", "neo-tree" },
       excluded_buftypes = { "terminal", "nofile", "quickfix", "prompt", "help" },
-      retirement_minutes = 1,
+      retirement_minutes = 20,
       min_remaining_buffers = 3,
     }
 
