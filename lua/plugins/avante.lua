@@ -25,12 +25,12 @@ return {
         -- endpoint = '<https://api.anthropic.com>',
         -- model = "claude-sonnet-4-20250514",
         -- api_key_name = 'CLAUDE_API_KEY',
-        model = 'gpt-4-turbo',
+        model = 'o4-mini',
         api_key_name = 'OPENAI_API_KEY',
         timeout = 30000, -- Timeout in milliseconds
         extra_request_body = {
           temperature = 0.75,
-          max_tokens = 4096,
+          -- max_tokens = 4096,
         },
       },
     },
